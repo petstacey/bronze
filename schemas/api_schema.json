@@ -1,0 +1,29 @@
+[
+  {
+    "route": "/game",
+    "is_route_dynamic": "false",
+    "method": "post",
+    "request_body": {
+      "word": "string"
+    },
+    "response": "None"
+  },
+  {
+    "route": "/game/{id}/guess",
+    "is_route_dynamic": "true",
+    "method": "post",
+    "request_body": {
+      "letter": "char"
+    },
+    "response": "None"
+  },
+  {
+    "route": "/game/{id}/last_guess",
+    "is_route_dynamic": "true",
+    "method": "get",
+    "request_body": "None",
+    "response": {
+      "last_guess": "char"
+    }
+  }
+]
