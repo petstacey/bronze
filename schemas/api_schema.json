@@ -1,56 +1,64 @@
 [
   {
-    "route": "/exercise",
+    "route": "/progress",
     "is_route_dynamic": "false",
     "method": "post",
     "request_body": {
       "id": "number",
-      "name": "string",
-      "weight": "number",
-      "repetitions": "number"
+      "user_id": "number",
+      "date": "string",
+      "workout": "string",
+      "duration": "number",
+      "calories_burned": "number"
     },
     "response": "None"
   },
   {
-    "route": "/exercise",
+    "route": "/progress",
     "is_route_dynamic": "false",
     "method": "get",
     "request_body": "None",
     "response": [
       {
         "id": "number",
-        "name": "string",
-        "weight": "number",
-        "repetitions": "number"
+        "user_id": "number",
+        "date": "string",
+        "workout": "string",
+        "duration": "number",
+        "calories_burned": "number"
       }
     ]
   },
   {
-    "route": "/exercise",
+    "route": "/progress",
     "is_route_dynamic": "false",
     "method": "put",
     "request_body": {
       "id": "number",
-      "name": "string",
-      "weight": "number",
-      "repetitions": "number"
+      "user_id": "number",
+      "date": "string",
+      "workout": "string",
+      "duration": "number",
+      "calories_burned": "number"
     },
     "response": "None"
   },
   {
-    "route": "/exercise/{id}",
+    "route": "/progress/{id}",
     "is_route_dynamic": "true",
     "method": "get",
     "request_body": "None",
     "response": {
       "id": "number",
-      "name": "string",
-      "weight": "number",
-      "repetitions": "number"
+      "user_id": "number",
+      "date": "string",
+      "workout": "string",
+      "duration": "number",
+      "calories_burned": "number"
     }
   },
   {
-    "route": "/exercise/{id}",
+    "route": "/progress/{id}",
     "is_route_dynamic": "true",
     "method": "delete",
     "request_body": "None",
@@ -72,9 +80,10 @@
     "is_route_dynamic": "false",
     "method": "post",
     "request_body": {
+      "id": "number",
       "username": "string",
       "password": "string"
     },
-    "response": "None"
+    "response": "string"
   }
 ]
