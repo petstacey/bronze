@@ -2,8 +2,9 @@ use crate::ai_functions::aifunc_project_manager::print_user_input_as_scope;
 use crate::helpers::general::ai_task_request;
 use crate::models::base_agent::base_agent::{AgentState, BaseAgent};
 use crate::models::general::llm::Message;
+use crate::models::team::junior_backend_engineer::JuniorBackendEngineer;
+use crate::models::team::senior_backend_engineer::SeniorBackendEngineer;
 use crate::models::team::solution_architect::SolutionArchitect;
-use crate::models::team::backend_engineer::BackendEngineer;
 use crate::models::team::team_traits::{SolutionSpecification, SpecialFunctions};
 
 #[derive(Debug)]
@@ -19,7 +20,7 @@ impl ProjectManager {
 
         let attributes = BaseAgent {
             objective:
-                "Manage team members that are designing and building the website for the user"
+                "Manages team members that are designing and building the website for the user"
                     .to_string(),
             position: position.clone(),
             state: AgentState::Discovery,
@@ -57,7 +58,8 @@ impl ProjectManager {
 
     fn create_team_members(&mut self) {
         self.add_team_member(Box::new(SolutionArchitect::new()));
-        self.add_team_member(Box::new(BackendEngineer::new()));
+        self.add_team_member(Box::new(JuniorBackendEngineer::new()));
+        self.add_team_member(Box::new(SeniorBackendEngineer::new()));
         // Add other team members
     }
 
@@ -67,8 +69,12 @@ impl ProjectManager {
             let result: Result<(), Box<dyn std::error::Error>> =
                 member.execute_task(&mut self.specification).await;
 
-            // let info = member.get_attributes_from_agent();
-            // dbg!(info);
+            match result {
+                Ok(()) => {}
+                Err(e) => {
+                    println!("Error in delivering the project: {}", e);
+                }
+            }
         }
     }
 }

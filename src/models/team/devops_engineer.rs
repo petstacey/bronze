@@ -19,18 +19,18 @@ use std::time::Duration;
 use tokio::time;
 
 #[derive(Debug)]
-pub struct BackendEngineer {
+pub struct DevopsEngineer {
     attributes: BaseAgent,
     bug_count: u8,
     bugs: Option<String>,
 }
 
-impl BackendEngineer {
+impl DevopsEngineer {
     pub fn new() -> Self {
         let attributes: BaseAgent = BaseAgent {
-            objective: "Develops backend code for the webserver and json database".to_string(),
-            position: "Backend Developer".to_string(),
-            state: AgentState::Discovery,
+            objective: "Tests, build and deploys code and manages devops pipeline".to_string(),
+            position: "Devops Engineer".to_string(),
+            state: AgentState::Working,
             memory: vec![],
         };
         Self {
@@ -38,26 +38,6 @@ impl BackendEngineer {
             bug_count: 0,
             bugs: None,
         }
-    }
-
-    async fn call_initial_backend_code(&self, specification: &mut SolutionSpecification) {
-        let code_template_str: String = read_code_template_content();
-
-        let msg_context: String = format!(
-            "CODE_TEMPLATE: {} \nPROJECT DESCRIPTION: {}",
-            code_template_str, specification.project_description
-        );
-
-        let ai_response: String = ai_task_request(
-            msg_context,
-            &self.attributes.position,
-            get_function_string!(print_backend_webserver_code),
-            print_backend_webserver_code,
-        )
-        .await;
-
-        save_backend_code(&ai_response);
-        specification.backend_code = Some(ai_response);
     }
 
     async fn call_improve_backend_code(&self, specification: &mut SolutionSpecification) {
@@ -115,7 +95,7 @@ impl BackendEngineer {
 }
 
 #[async_trait]
-impl SpecialFunctions for BackendEngineer {
+impl SpecialFunctions for DevopsEngineer {
     fn get_attributes_from_agent(&self) -> &BaseAgent {
         &self.attributes
     }
@@ -127,7 +107,6 @@ impl SpecialFunctions for BackendEngineer {
         while self.attributes.state != AgentState::Finished {
             match &self.attributes.state {
                 AgentState::Discovery => {
-                    self.call_initial_backend_code(specification).await;
                     self.attributes.update_state(AgentState::Working);
                     continue;
                 }
@@ -287,7 +266,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_writing_backend_code() {
-        let mut agent = BackendEngineer::new();
+        let mut agent = DevopsEngineer::new();
 
         let specification_str: &str = r#"
             {

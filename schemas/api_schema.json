@@ -1,29 +1,80 @@
 [
   {
-    "route": "/game",
+    "route": "/exercise",
     "is_route_dynamic": "false",
     "method": "post",
     "request_body": {
-      "word": "string"
+      "id": "number",
+      "name": "string",
+      "weight": "number",
+      "repetitions": "number"
     },
     "response": "None"
   },
   {
-    "route": "/game/{id}/guess",
-    "is_route_dynamic": "true",
-    "method": "post",
+    "route": "/exercise",
+    "is_route_dynamic": "false",
+    "method": "get",
+    "request_body": "None",
+    "response": [
+      {
+        "id": "number",
+        "name": "string",
+        "weight": "number",
+        "repetitions": "number"
+      }
+    ]
+  },
+  {
+    "route": "/exercise",
+    "is_route_dynamic": "false",
+    "method": "put",
     "request_body": {
-      "letter": "char"
+      "id": "number",
+      "name": "string",
+      "weight": "number",
+      "repetitions": "number"
     },
     "response": "None"
   },
   {
-    "route": "/game/{id}/last_guess",
+    "route": "/exercise/{id}",
     "is_route_dynamic": "true",
     "method": "get",
     "request_body": "None",
     "response": {
-      "last_guess": "char"
+      "id": "number",
+      "name": "string",
+      "weight": "number",
+      "repetitions": "number"
     }
+  },
+  {
+    "route": "/exercise/{id}",
+    "is_route_dynamic": "true",
+    "method": "delete",
+    "request_body": "None",
+    "response": "None"
+  },
+  {
+    "route": "/register",
+    "is_route_dynamic": "false",
+    "method": "post",
+    "request_body": {
+      "id": "number",
+      "username": "string",
+      "password": "string"
+    },
+    "response": "None"
+  },
+  {
+    "route": "/login",
+    "is_route_dynamic": "false",
+    "method": "post",
+    "request_body": {
+      "username": "string",
+      "password": "string"
+    },
+    "response": "None"
   }
 ]

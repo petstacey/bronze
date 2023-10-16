@@ -18,11 +18,11 @@ use models::project_manager::project_manager::ProjectManager;
 async fn main() {
     let usr_req = user_input("What are we building today?");
 
-    let mut project_maanger = ProjectManager::new(usr_req)
+    let mut project_manager = ProjectManager::new(usr_req)
         .await
-        .expect("Error creating team");
+        .expect("Error creating the project manager and/or solution specification");
 
-    project_maanger.deliver_project().await;
+    project_manager.deliver_project().await;
 
     // dbg!(project_maanger);
 }

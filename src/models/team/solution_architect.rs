@@ -17,14 +17,14 @@ pub struct SolutionArchitect {
 impl SolutionArchitect {
     pub fn new() -> Self {
         let attributes = BaseAgent {
-            objective: "Gathers requirements and design the solution for the website architecture"
-                .to_string(),
+            objective: "Gathers requirements and designs the website solution".to_string(),
             position: "Solution Architect".to_string(),
             state: AgentState::Discovery,
             memory: vec![],
         };
         Self { attributes }
     }
+
     async fn call_project_features(
         &mut self,
         specification: &mut SolutionSpecification,
@@ -43,6 +43,7 @@ impl SolutionArchitect {
         self.attributes.update_state(AgentState::Finished);
         ai_response
     }
+
     async fn call_external_urls(
         &mut self,
         specification: &mut SolutionSpecification,
@@ -70,7 +71,6 @@ impl SpecialFunctions for SolutionArchitect {
         &mut self,
         specification: &mut SolutionSpecification,
     ) -> Result<(), Box<dyn std::error::Error>> {
-        // WARN: CAREFUL OF INFINITE LOOP => INFINITE COST
         while self.attributes.state != AgentState::Finished {
             match self.attributes.state {
                 AgentState::Discovery => {

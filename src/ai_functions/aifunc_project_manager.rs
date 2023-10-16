@@ -10,6 +10,6 @@ pub fn print_user_input_as_scope(_user_request: &str) {
     ///   OUTPUT = "build a website that handles users logging in and logging out and accepts payments"
     /// Example 2:
     ///   user_request = "Create something that stores crypto price data in a database using supabase and retrieves prices on the frontend."
-    ///   OUTPUT = "build a website that fetches and stores crypto price data within a supabase setup including a frontend UI to fetch the data."
+    ///   OUTPUT = "build a website that fetches and stores crypto price data within a database setup including a frontend UI to fetch the data."
     println!(OUTPUT)
 }
