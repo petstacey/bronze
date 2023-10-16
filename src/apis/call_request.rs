@@ -13,7 +13,8 @@ pub async fn call_gpt(messages: Vec<Message>) -> Result<String, Box<dyn std::err
     let api_org: String =
         env::var("OPEN_AI_ORG").expect("Open AI Org not found in environment variables");
 
-    let url: &str = "https://api.openai.com/v1/chat/completions";
+    let url: String = 
+    env::var("OPEN_AI_URL").expect("Open AI Org not found in environment variables");
 
     let mut headers: HeaderMap = HeaderMap::new();
     headers.insert(
