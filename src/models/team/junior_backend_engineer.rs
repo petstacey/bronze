@@ -1,28 +1,14 @@
-use crate::ai_functions::aifunc_backend_engineer::{
-    print_backend_webserver_code, print_fixed_code, print_improved_webserver_code,
-    print_rest_api_endpoints,
-};
-use crate::helpers::cli::{confirm_safe_code, PrintCommand};
+use crate::ai_functions::aifunc_backend_engineer::print_backend_webserver_code;
 use crate::helpers::general::ai_task_request;
-use crate::helpers::general::{
-    check_status_code, read_code_template_content, read_executable_code_content, save_api_schema,
-    save_backend_code, WEBSERVER_PATH,
-};
+use crate::helpers::general::{ read_code_template_content, save_backend_code };
 use crate::models::base_agent::base_agent::{AgentState, BaseAgent};
 use crate::models::base_agent::base_traits::BaseTraits;
-use crate::models::team::team_traits::{RouteObject, SolutionSpecification, SpecialFunctions};
+use crate::models::team::team_traits::{SolutionSpecification, SpecialFunctions};
 use async_trait::async_trait;
-use reqwest::Client;
-use std::fs;
-use std::process::{Command, Stdio};
-use std::time::Duration;
-use tokio::time;
 
 #[derive(Debug)]
 pub struct JuniorBackendEngineer {
     attributes: BaseAgent,
-    bug_count: u8,
-    bugs: Option<String>,
 }
 
 impl JuniorBackendEngineer {
@@ -35,8 +21,6 @@ impl JuniorBackendEngineer {
         };
         Self {
             attributes,
-            bug_count: 0,
-            bugs: None,
         }
     }
 

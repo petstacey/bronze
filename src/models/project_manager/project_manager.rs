@@ -1,13 +1,13 @@
 use crate::ai_functions::aifunc_project_manager::print_user_input_as_scope;
 use crate::helpers::general::ai_task_request;
 use crate::models::base_agent::base_agent::{AgentState, BaseAgent};
-use crate::models::general::llm::Message;
 use crate::models::team::junior_backend_engineer::JuniorBackendEngineer;
 use crate::models::team::senior_backend_engineer::SeniorBackendEngineer;
 use crate::models::team::solution_architect::SolutionArchitect;
 use crate::models::team::team_traits::{SolutionSpecification, SpecialFunctions};
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct ProjectManager {
     attributes: BaseAgent,
     specification: SolutionSpecification,
